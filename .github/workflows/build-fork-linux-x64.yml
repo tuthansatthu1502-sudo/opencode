@@ -35,3 +35,17 @@ jobs:
         with:
           name: opencode-linux-x64-pr66377
           path: packages/cli/dist
+  test-fix:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - name: Check out
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        with:
+          persist-credentials: false
+      - name: Set up Bun
+        uses: ./.github/actions/setup-bun
+        with:
+          bun-version: 1.4.4
+      - name: Run PR #66377 tests
+        run: bun test --timeout 60000 packages/ai/test/provider/openai-chat.test.ts packages/core/test/session-runner-chat-replay.test.ts
