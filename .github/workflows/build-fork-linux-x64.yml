@@ -24,6 +24,7 @@ jobs:
           OPENCODE_TARGET: linux-x64
           OPENCODE_CHANNEL: latest
           OPENCODE_VERSION: 2.4.2-pr66377
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           OPENCODE_MODELS_SNAPSHOT: ${{ github.workspace }}/.cache/models-catalog/api.json
       - name: Verify bundled models catalog
         run: bun packages/cli/script/catalog-smoke.ts packages/cli/dist/cli-linux-x64/bin/opencode
