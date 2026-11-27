@@ -47,5 +47,9 @@ jobs:
         uses: ./.github/actions/setup-bun
         with:
           bun-version: 1.4.4
-      - name: Run PR #66377 tests
-        run: bun test --timeout 60000 packages/ai/test/provider/openai-chat.test.ts packages/core/test/session-runner-chat-replay.test.ts
+      - name: Run PR #66377 ai tests
+        working-directory: packages/ai
+        run: bun test --timeout 60000 test/provider/openai-chat.test.ts
+      - name: Run PR #66377 replay test
+        working-directory: packages/core
+        run: bun test --timeout 60000 test/session-runner-chat-replay.test.ts
